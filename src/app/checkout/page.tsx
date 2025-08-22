@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useMemo, useState } from 'react'
-import { useCart } from '../../context/CartContext'
+import { useCart } from '../context/CartContext'
 declare global { interface Window { PaystackPop:any } }
 
 export default function Checkout(){

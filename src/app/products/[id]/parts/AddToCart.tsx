@@ -1,7 +1,7 @@
 // src/app/product/[id]/parts/AddToCart.tsx
 'use client'
-import { Product } from '../../../../context/CartContext'
-import { useCart } from '../../../../context/CartContext'
+import { Product } from '@/app/context/CartContext'
+import { useCart } from '@/app/context/CartContext'
 
 export default function AddToCart({product}:{product:Product}){
   const { add, open } = useCart()

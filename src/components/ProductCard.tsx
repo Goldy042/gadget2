@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
-import { Product } from '../context/CartContext'
-import { useCart } from '../context/CartContext'
+import { Product } from '@/app/context/CartContext'
+import { useCart } from '@/app/context/CartContext'
 
 export default function ProductCard({product}:{product:Product}){
   const { add, open } = useCart()
