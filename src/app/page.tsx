@@ -4,7 +4,7 @@ import Features from "@/app/components/Features";
 import ProductGrid from "@/app/components/ProductGrid";
 import Testimonials from "@/app/components/Testimonials";
 import Footer from "@/app/components/Footer";
-import { slides } from "./data/slides";
+import { slides } from "./data/Carousel";
 
 
 export default function HomePage() {
