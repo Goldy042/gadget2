@@ -1,28 +1,31 @@
-import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import clientPromise from "../../../lib/mongodb";
 
 export default NextAuth({
+  adapter: MongoDBAdapter(clientPromise),
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" }
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Example dummy auth - replace later with DB
-        if (credentials?.email === "test@example.com" && credentials?.password === "1234") {
-          return { id: "1", name: "Kel User", email: "test@example.com" }
+        // For now, dummy check — later we’ll hash + compare real passwords
+        if (
+          credentials.email === "test@test.com" &&
+          credentials.password === "123456"
+        ) {
+          return { id: "1", name: "Test User", email: "test@test.com" };
         }
-        return null
-      }
-    })
+        return null;
+      },
+    }),
   ],
-  pages: {
-    signIn: "/auth/signin", // custom login page
-  },
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
   },
-  secret: process.env.NEXTAUTH_SECRET, // put this in .env
-})
+});
