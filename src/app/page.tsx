@@ -1,16 +1,17 @@
-import Navbar from "@/components/Navbar";
-import HeroCarousel from "@/components/HeroCarousel";
-import Features from "@/components/Features";
-import ProductGrid from "@/components/ProductGrid";
-import Testimonials from "@/components/Testimonials";
-import Footer from "@/components/Footer";
+import Navbar from "@/app/components/Navbar";
+import HeroCarousel from "@/app/components/HeroCarousel";
+import Features from "@/app/components/Features";
+import ProductGrid from "@/app/components/ProductGrid";
+import Testimonials from "@/app/components/Testimonials";
+import Footer from "@/app/components/Footer";
+import { slides } from "./data/slides";
 
 
 export default function HomePage() {
 return (
 <main>
 <Navbar />
-<HeroCarousel />
+<HeroCarousel slides={slides}/>
 <Features />
 <ProductGrid />
 <Testimonials />

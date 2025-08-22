@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from 'react';
+import { Slides } from '../types/Carousel';
 
-export default function Carousel({ slides }) {
+export default function Carousel({ slides } : {slides: Slides[]}) {
   const [index, setIndex] = useState(0);
   const total = slides?.length || 0;
   const dots = Array.from({ length: total }, (_, i) => i);
@@ -36,7 +37,7 @@ export default function Carousel({ slides }) {
             <div className="flex items-center justify-center">
               <div className="glass rounded-2xl shadow-soft overflow-hidden w-full max-w-[520px] aspect-[4/3] grid place-items-center">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={s.img} alt={s.alt} className="w-full h-full object-cover"/>
+                <img src={s.img} alt={s?.alt || s.title} className="w-full h-full object-cover"/>
               </div>
             </div>
           </div>
