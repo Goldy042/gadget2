@@ -18,7 +18,7 @@ export default function Carousel({ slides } : {slides: Slides[]}) {
   }
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="bg-background text-foreground relative overflow-hidden">
       <div className="h-[520px] grid place-items-stretch">
         {slides.map((s, i) => (
           <div
@@ -27,12 +27,12 @@ export default function Carousel({ slides } : {slides: Slides[]}) {
             aria-hidden={i !== index}
           >
             <div className="glass rounded-2xl p-6 shadow-soft">
-              <div className="inline-flex items-center gap-2 text-brandBrown font-semibold mb-2">
+              <div className="inline-flex items-center gap-2 text-primary font-semibold mb-2">
                 <span className="w-2 h-2 rounded-full bg-brandGold"/> {s.tag}
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-brandInk mb-3">{s.title}</h1>
-              <p className="text-brandBrown/80 mb-4">{s.text}</p>
-              <a href={s.href} className="inline-flex items-center gap-2 bg-gradient-to-br from-brandGold to-amber-200 text-brandBrown font-semibold px-5 py-3 rounded-xl shadow-soft hover:brightness-110 transition">{s.cta}</a>
+              <p className="text-primary/80 mb-4">{s.text}</p>
+              <a href={s.href} className="inline-flex items-center gap-2 bg-primary text-neutral font-semibold px-5 py-3 rounded-xl shadow-soft hover:brightness-110 transition">{s.cta}</a>
             </div>
             <div className="flex items-center justify-center">
               <div className="glass rounded-2xl shadow-soft overflow-hidden w-full max-w-[520px] aspect-[4/3] grid place-items-center">
@@ -49,7 +49,7 @@ export default function Carousel({ slides } : {slides: Slides[]}) {
           <button
             key={d}
             onClick={()=>setIndex(d)}
-            className={`w-2.5 h-2.5 rounded-full ${d === index ? 'bg-brandBrown' : 'bg-black/30'}`}
+            className={`w-2.5 h-2.5 rounded-full ${d === index ? 'bg-primary' : 'bg-black/30'}`}
             aria-label={`Go to slide ${d+1}`}
           />
         ))}

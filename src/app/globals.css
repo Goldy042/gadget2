@@ -1,33 +1,162 @@
 @import "tailwindcss";
+@variant dark ([data-theme="dark"], [data-theme="dark"] *);
 
-
-
+/* CSS Custom Properties */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F9F6F2;
+  --foreground: #2C2C2C;
+  
+  /* Light mode color palette */
+  --color-primary: #3B2323;
+  --color-accent: #D57A3D;
+  --color-neutral: #F9F6F2;
+  --color-charcoal: #2C2C2C;
+  --color-secondary: #BFA06A;
 }
 
-@theme inline {
+/* Dark mode variables */
+[data-theme="dark"] {
+  --background: #1A1612;
+  --foreground: #F9F6F2;
+  
+  /* Dark mode color palette - adjusted for better contrast */
+  --color-primary: #1A1612;        /* Darker primary for dark mode */
+  --color-accent: #E5944A;         /* Slightly brighter accent for visibility */
+  --color-neutral: #F9F6F2;        /* Keep neutral light for text */
+  --color-charcoal: #0F0F0F;       /* Deeper charcoal for dark mode */
+  --color-secondary: #C7A96F;      /* Slightly brighter secondary */
+}
+
+/* Tailwind theme configuration (CSS-first approach) */
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-brandBrown: #5A3825;
-  --color-brandWhite: #FFFFFF;
+  
+  /* Dynamic color palette using CSS variables */
+  --color-primary: var(--color-primary);
+  --color-accent: var(--color-accent);
+  --color-neutral: var(--color-neutral);
+  --color-charcoal: var(--color-charcoal);
+  --color-secondary: var(--color-secondary);
+
+  /* Custom animations */
+  --animate-subtle-zoom: subtle-zoom 20s ease-in-out infinite alternate;
+  --animate-fade-in: fade-in 1s ease-out forwards;
+  --animate-fade-in-delay: fade-in 1s ease-out 0.3s forwards;
+  --animate-fade-in-delay-2: fade-in 1s ease-out 0.6s forwards;
+  --animate-bounce-slow: bounce 3s infinite;
 }
 
+/* Fallback for system preference */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --background: #F9F6F2;
+    --foreground: #1A1612;
+    
+    /* Auto dark mode colors */
+    --color-primary: #1A1612;
+    --color-accent: #E5944A;
+    --color-neutral: #F9F6F2;
+    --color-charcoal: #0F0F0F;
+    --color-secondary: #C7A96F;
   }
 }
 
+/* Base styles */
 body {
-  background: var(--brandWhite);
-  color: var(--brandBrown);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-family-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Enhanced dark mode specific utilities */
+@layer utilities {
+  .animate-subtle-zoom {
+    animation: var(--animate-subtle-zoom);
+  }
+  .animate-fade-in {
+    animation: var(--animate-fade-in);
+  }
+  .animate-fade-in-delay {
+    animation: var(--animate-fade-in-delay);
+    opacity: 0;
+  }
+  .animate-fade-in-delay-2 {
+    animation: var(--animate-fade-in-delay-2);
+    opacity: 0;
+  }
+  .animate-bounce-slow {
+    animation: var(--animate-bounce-slow);
+  }
+  
+  /* Dark mode enhanced borders and shadows */
+  .border-adaptive {
+    border-color: var(--color-secondary);
+  }
+  
+  .shadow-adaptive {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  [data-theme="dark"] .shadow-adaptive {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Improved shimmer for dark mode */
+  .animate-shimmer {
+    animation: shimmer 2.5s infinite linear;
+    background-size: 200% 100%;
+  }
+  
+  .animate-shimmer {
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+  
+  [data-theme="dark"] .animate-shimmer {
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
 
+/* Keyframe definitions */
+@keyframes subtle-zoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

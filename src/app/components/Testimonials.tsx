@@ -5,15 +5,15 @@ const items = [
 { text: '“Customer service is 10/10. They helped me pick the right earbuds.”', name: 'Sarah, Port Harcourt' },
 ];
 return (
-<section id="testimonials" className="py-9">
+<section id="testimonials" className="py-9 bg-gray-50">
 <div className="container">
-<h2 className="text-center text-2xl font-bold text-brandBrown mb-6">What Customers Say</h2>
+<h2 className="text-center text-2xl font-bold text-primary mb-6">What Customers Say</h2>
 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 {items.map((t,i)=> (
 <div key={i} className="glass rounded-xl p-5 shadow-soft">
 <div className="text-brandGold text-lg mb-1">★★★★★</div>
 <p className="text-black/80">{t.text}</p>
-<div className="mt-2 font-semibold text-brandBrown">— {t.name}</div>
+<div className="mt-2 font-semibold text-primary">— {t.name}</div>
 </div>
 ))}
 </div>

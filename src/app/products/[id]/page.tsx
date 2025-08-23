@@ -1,5 +1,5 @@
 // src/app/product/[id]/page.tsx
-import { products } from '../../../data/products'
+import { products } from '@/app/data/products'
 import { notFound } from 'next/navigation'
 import AddToCart from './parts/AddToCart'
 
